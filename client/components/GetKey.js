@@ -1,9 +1,11 @@
 "use client"
-import React from "react";
+import React, { useState } from "react";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
 
 export default function GetKey() {
-  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [gpt, setGpt] = useState("");
+  const [gemini, setGemini] = useState("");
 
   return (
     <>
@@ -14,34 +16,46 @@ export default function GetKey() {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1 text-center text-xl mb-[-2vh] pt-5">🔑 Enter API Key</ModalHeader>
               <ModalBody>
-                <p> 
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                <p className="text-gray-500"> 
+                Your API Key is stored locally on your browser and never sent anywhere else.
                 </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Magna exercitation reprehenderit magna aute tempor cupidatat consequat elit
-                  dolor adipisicing. Mollit dolor eiusmod sunt ex incididunt cillum quis. 
-                  Velit duis sit officia eiusmod Lorem aliqua enim laboris do dolor eiusmod. 
-                  Et mollit incididunt nisi consectetur esse laborum eiusmod pariatur 
-                  proident Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
-                </p>
+                <div className="flex flex-col gap-y-2 mb-3">
+                  <div className="flex">
+                    <span className="font-medium">OpenAI API Key:</span>
+                    <span className="text-blue-500 font-medium">{"(Get the Key Here)"}</span>
+                  </div>
+                  <div className="flex gap-x-2 items-center">
+                    <img className="w-[30px] h-[30px]" src="https://miro.medium.com/v2/resize:fit:450/format:webp/1*ek9Jo0-MZgURj00CT6PMSg.jpeg" alt="" />
+                    <input type="text"
+                      onChange={(e)=>{setGpt(e.target.value)}}
+                      placeholder="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                      className="flex-1 py-[6px] px-[6px] border-gray-300 border-3 rounded outline-blue-400" />
+                    <Button color="primary"
+                    onClick={()=>{localStorage.setItem("gpt",gpt)}}>
+                     Save
+      </Button> 
+                  </div>
+                </div>
+                <div className="flex flex-col gap-y-2 mb-5">
+                  <div className="flex">
+                    <span className="font-medium">Google Gemini API Key:</span>
+                    <span className="text-blue-500 font-medium">{"(Get the Key Here)"}</span>
+                  </div>
+                  <div className="flex gap-x-2 items-center">
+                    <img className="w-[30px] h-[30px]" src="https://res.cloudinary.com/dxprcmmcz/image/upload/v1711445550/Google_Bard_logo_cpve2e.svg" alt="" />
+                    <input type="text"
+                      onChange={(e)=>{setGemini(e.target.value)}}
+                      placeholder="Alxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                      className="flex-1 py-[6px] px-[6px] border-gray-300 border-3 rounded outline-blue-400" />
+                    <Button color="primary"
+                    onClick={()=>{localStorage.setItem("gemini",gemini)}}>
+                     Save
+      </Button> 
+                  </div>
+                </div>
               </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Close
-                </Button>
-                <Button color="primary" onPress={onClose}>
-                  Action
-                </Button>
-              </ModalFooter>
             </>
           )}
         </ModalContent>

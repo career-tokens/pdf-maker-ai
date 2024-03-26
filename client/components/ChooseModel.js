@@ -1,51 +1,61 @@
-"use client"
-import React from "react";
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
+"use client";
+import React, { useEffect, useState } from "react";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Button,
+  Checkbox,
+} from "@nextui-org/react";
 
 export default function ChooseModel() {
-  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  const [selected, setSelected] = useState(localStorage.getItem("model"));
+
+  useEffect(() => {
+    if (selected === 1)
+      localStorage.setItem("model", "GPT");
+    if (selected === 2)
+      localStorage.setItem("model", "Gemini");
+  }, [selected]);
 
   return (
     <>
-          <button onClick={onOpen} className="text-white relative inline-flex items-center gap-2 bg-clip-padding rounded-full font-medium border border-transparent transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500  bg-blue-600 hover:bg-blue-500 px-5 py-2.5">
-              Choose Model
+      <Dropdown>
+        <DropdownTrigger>
+          <button className="text-white relative inline-flex items-center gap-2 bg-clip-padding rounded-full font-medium border border-transparent transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500  bg-blue-600 hover:bg-blue-500 px-5 py-2.5">
+            Choose Model
           </button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
-              <ModalBody>
-                <p> 
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Magna exercitation reprehenderit magna aute tempor cupidatat consequat elit
-                  dolor adipisicing. Mollit dolor eiusmod sunt ex incididunt cillum quis. 
-                  Velit duis sit officia eiusmod Lorem aliqua enim laboris do dolor eiusmod. 
-                  Et mollit incididunt nisi consectetur esse laborum eiusmod pariatur 
-                  proident Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
-                </p>
-              </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Close
-                </Button>
-                <Button color="primary" onPress={onClose}>
-                  Action
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
+        </DropdownTrigger>
+        <DropdownMenu aria-label="Static Actions">
+          <DropdownItem key="gpt">
+            <div className="flex justify-between items-center text-lg">
+              <div className="flex gap-x-2">
+                <img
+                  src="https://miro.medium.com/v2/resize:fit:450/format:webp/1*ek9Jo0-MZgURj00CT6PMSg.jpeg"
+                  alt=""
+                  className="h-[30px] w-[30px] rounded"
+                />
+                GPT-4
+              </div>
+              <Checkbox isSelected={selected === 1} onClick={()=>{setSelected(1)}}/>
+            </div>
+          </DropdownItem>
+          <DropdownItem key="gemini">
+            <div className="flex justify-between items-center text-lg">
+              <div className="flex gap-x-2">
+                <img
+                  src="https://res.cloudinary.com/dxprcmmcz/image/upload/v1711445550/Google_Bard_logo_cpve2e.svg"
+                  alt=""
+                  className="h-[30px] w-[30px] rounded"
+                />
+                Gemini Pro
+              </div>
+              <Checkbox isSelected={selected===2} onClick={()=>{setSelected(2)}}/>
+            </div>
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
     </>
   );
 }

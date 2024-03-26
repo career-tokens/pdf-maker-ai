@@ -13,7 +13,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
         <Providers>
-          <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          <div className="h-screen bg-[#131314]">
+          <img src="https://nextui.pro/images/default-gradient.png" alt="" className="absolute h-screen w-screen mt-[-20vh]"/>
+          {children}
+          </div>
+        </body>
         </Providers>
     </html>
   );

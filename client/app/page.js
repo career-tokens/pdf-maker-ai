@@ -42,7 +42,7 @@ export default function Home() {
     setPdfData(URL.createObjectURL(blob));
   }
   return (
-    <div className="bg-[#131314] min-h-screen flex flex-col lg:flex-row justify-center items-center">
+    <div className="min-h-screen flex flex-col lg:flex-row justify-center items-center">
       <div className="generate-and-show-code p-4 h-screen gap-y-3 w-full lg:w-[50vw] flex flex-col items-center justify-center">
         <div className="w-full flex gap-x-4 justify-center">
           <ChooseModel />
@@ -58,7 +58,7 @@ export default function Home() {
           className="text-white relative inline-flex items-center gap-2 bg-clip-padding rounded-full font-medium border border-transparent transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500  bg-blue-600 hover:bg-blue-500 px-5 py-2.5"
           onClick={handleSendPrompt}>Send Prompt</button>
         <textarea
-          className="rounded flex-1 w-full"
+          className="rounded flex-1 w-full z-[2]"
           value={`${finalCode}`}
           onChange={(e) => { setFinalCode(e.target.value) }} />
         <button className="text-white relative inline-flex items-center gap-2 bg-clip-padding rounded-full font-medium border border-transparent transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500  bg-blue-600 hover:bg-blue-500 px-5 py-2.5"
