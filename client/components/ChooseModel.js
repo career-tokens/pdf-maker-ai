@@ -10,7 +10,7 @@ import {
 } from "@nextui-org/react";
 
 export default function ChooseModel() {
-  const [selected, setSelected] = useState(localStorage.getItem("model"));
+  const [selected, setSelected] = useState(2);
 
   useEffect(() => {
     if (selected === 1)
