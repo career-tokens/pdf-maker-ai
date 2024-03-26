@@ -6,9 +6,9 @@ import ChooseModel from "../components/ChooseModel.js"
 import { Geminigeneration } from "@/helpers/Geminigeneration.js";
 import { GPTgeneration } from "@/helpers/GPTgeneration.js";
 import Loading from "@/components/LoadingScreen.js";
-import { ToastContainer, toast } from "react-toastify";
 import { initialcode } from "@/helpers/initialcode.js";
 import { Spinner } from "@nextui-org/react";
+import { Toaster,toast } from "sonner";
 
 export default function Home() {
 
@@ -32,18 +32,19 @@ export default function Home() {
     else
     {
       let key = localStorage.getItem("gemini");
-      // if (key)
-      // {console.log("here")
-      //   setFinalCode(await Geminigeneration(prompt, key));
-      //   setPromptResponseLoading(false)
-      // }
-      // else if (process.env.NEXT_PUBLIC_DEVELOPEMENT_MODE == true)
-      // {
+      console.log(key)
+      if (key)
+      {console.log("here")
+        setFinalCode(await Geminigeneration(prompt, key));
+        setPromptResponseLoading(false)
+      }
+      else if (process.env.NEXT_PUBLIC_DEVELOPEMENT_MODE == true)
+      {
         setFinalCode(await Geminigeneration(prompt, process.env.NEXT_PUBLIC_API_KEY));
         setPromptResponseLoading(false)
-    //   }
-    //   else
-    //   toast.error("API Key Not Found")
+      }
+      else
+      toast.error("API Key Not Found")
     }
   }
 
@@ -73,7 +74,7 @@ export default function Home() {
   useEffect(()=>{handleSubmit()}, []);
 
   return (
-    
+    <>
     <div className="min-h-screen flex flex-col lg:flex-row justify-center items-center">
       <div className="generate-and-show-code p-4 h-screen gap-y-3 w-full lg:w-[50vw] flex flex-col items-center justify-center">
         <div className="w-full flex gap-x-4 justify-center">
@@ -103,13 +104,19 @@ export default function Home() {
           value={`${finalCode}`}
           onChange={(e) => { setFinalCode(e.target.value) }} />
         <button className="text-white relative inline-flex items-center gap-2 bg-clip-padding rounded-full font-medium border border-transparent transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500  bg-blue-600 hover:bg-blue-500 px-5 py-2.5"
-          onClick={handleSubmit}>Submit Final Code</button>
+            onClick={() => {
+              setPdfData("")
+              handleSubmit()
+            }}>Submit Final Code</button>
       </div>
       <div className="min-h-screen w-full lg:w-[50vw]">
         {!pdfData&&<Loading/>}
         {pdfData&&<object data={pdfData} className="w-full h-screen z-[1000]" type="application/pdf"/>}
       </div>
       </div>
-
+      <Toaster richColors/>
+      </>
   )
 }
+
+//prompt:give teh react functional component to generate the UI of invoice  and use tailwindcss and also wrap teh JSX with Tailwind wrapper imported from "@onedoc/react-print"  and also make the necessary imports like react. DO NOT import anything else from onedoc/react-print. do not use any props give all teh data yourself in the component
