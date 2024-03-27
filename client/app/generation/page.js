@@ -10,6 +10,8 @@ import { initialcode } from "@/helpers/initialcode.js";
 import { Spinner } from "@nextui-org/react";
 import { Toaster,toast } from "sonner";
 import { UserButton } from "@clerk/nextjs";
+import { Editor } from "@monaco-editor/react";
+import useEditor from "@/hooks/useEditor.js";
 
 export default function Home() {
 
@@ -17,6 +19,7 @@ export default function Home() {
   const [finalCode, setFinalCode] = useState(initialcode);
   const [pdfData, setPdfData] = useState("");
   const [promptResponseLoading, setPromptResponseLoading] = useState(false);
+  const handleMount = useEditor(setFinalCode);
 
   const handleSendPrompt = async () => {
     if (localStorage.getItem("model") === "gpt")
@@ -81,7 +84,7 @@ export default function Home() {
           `
           .cl-rootBox{
             position:absolute;
-            top:20px;
+            top:15px;
             left:20px;
             scale:1.3;
           }
@@ -113,10 +116,15 @@ export default function Home() {
           {promptResponseLoading&&<Spinner/>}
         </div>
         <p className="text-white text-lg">Make sure to have a valid React component here with valid imports.</p>
-        <textarea
-          className="rounded flex-1 w-full z-[2] p-2"
-          value={`${finalCode}`}
-          onChange={(e) => { setFinalCode(e.target.value) }} />
+          <div className="flex-1 w-full py-4 rounded border-2 border-blue-400 bg-white bg-opacity-5">
+          <Editor
+            className="flex-1 w-full"
+            defaultLanguage="javascript"
+              defaultValue={`${finalCode}`}
+              onMount={handleMount}
+              theme="vs-dark"
+              />
+        </div>
         <button className="text-white relative inline-flex items-center gap-2 bg-clip-padding rounded-full font-medium border border-transparent transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500  bg-blue-600 hover:bg-blue-500 px-5 py-2.5"
             onClick={() => {
               setPdfData("")
