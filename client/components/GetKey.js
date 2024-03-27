@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from "react";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
+import Link from "next/link";
 
 export default function GetKey() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -24,7 +25,7 @@ export default function GetKey() {
                 <div className="flex flex-col gap-y-2 mb-3">
                   <div className="flex">
                     <span className="font-medium">OpenAI API Key:</span>
-                    <span className="text-blue-500 font-medium">{"(Get the Key Here)"}</span>
+                    <Link href="https://platform.openai.com/account/api-keys"><span className="text-blue-500 font-medium">{"(Get the Key Here)"}</span></Link>
                   </div>
                   <div className="flex gap-x-2 items-center">
                     <img className="w-[30px] h-[30px]" src="https://miro.medium.com/v2/resize:fit:450/format:webp/1*ek9Jo0-MZgURj00CT6PMSg.jpeg" alt="" />
@@ -41,7 +42,7 @@ export default function GetKey() {
                 <div className="flex flex-col gap-y-2 mb-5">
                   <div className="flex">
                     <span className="font-medium">Google Gemini API Key:</span>
-                    <span className="text-blue-500 font-medium">{"(Get the Key Here)"}</span>
+                    <Link href="https://aistudio.google.com/app/apikey"><span className="text-blue-500 font-medium">{"(Get the Key Here)"}</span></Link>
                   </div>
                   <div className="flex gap-x-2 items-center">
                     <img className="w-[30px] h-[30px]" src="https://res.cloudinary.com/dxprcmmcz/image/upload/v1711445550/Google_Bard_logo_cpve2e.svg" alt="" />

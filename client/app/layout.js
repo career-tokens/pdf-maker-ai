@@ -1,8 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ClerkProvider } from '@clerk/nextjs'
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -13,6 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <ClerkProvider>
         <Providers>
         <body className={inter.className}>
           <div className="h-screen bg-[#131314]">
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
             </div>
         </body>
         </Providers>
+        </ClerkProvider>
     </html>
   );
 }
