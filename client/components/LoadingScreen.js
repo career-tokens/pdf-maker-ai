@@ -3,7 +3,7 @@ import React from "react";
 
 const Loading = () => {
     return (
-      <div className="h-screen flex flex-col gap-y-[2vh] justify-center items-center bg-[#001428]">
+      <div className="h-screen flex flex-col gap-y-[2vh] justify-center items-center bg-[#001428] rounded">
         <div class="spinner"></div>
         <p className="text-[#009ff9] text-lg">Loading your PDF...</p>
   <style>

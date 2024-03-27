@@ -131,7 +131,7 @@ export default function Home() {
               handleSubmit()
             }}>Submit Final Code</button>
       </div>
-      <div className="min-h-screen w-full lg:w-[50vw]">
+      <div className="min-h-screen w-full p-2 lg:w-[50vw] lg:p-0 bg-[#131314]">
         {!pdfData&&<Loading/>}
         {pdfData&&<object data={pdfData} className="w-full h-screen z-[1000]" type="application/pdf"/>}
       </div>
