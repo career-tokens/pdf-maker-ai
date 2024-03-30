@@ -10,6 +10,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
+      process.env.FRONTEND_URL,
       "https://app.onedoclabs.com",
       "https://www.onedoclabs.com",
       "https://onedoclabs.com",

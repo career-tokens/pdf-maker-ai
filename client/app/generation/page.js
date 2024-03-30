@@ -22,28 +22,28 @@ export default function Home() {
   const handleMount = useEditor(setFinalCode);
 
   const handleSendPrompt = async () => {
-    if (localStorage.getItem("model") === "gpt")
+    if (localStorage.getItem("model") === "GPT")
     {
       let key = localStorage.getItem("gpt")
       if (key)
       {
         setFinalCode(GPTgeneration(prompt, key))
-        setPromptResponseLoading(false)
       }
       else
         toast.error("API Key Not Found")
+        setPromptResponseLoading(false)
     }
     else
     {
       let key = localStorage.getItem("gemini");
-      console.log(key)
       if (key)
-      {console.log("here")
+      {
         setFinalCode(await Geminigeneration(prompt,finalCode, key));
-        setPromptResponseLoading(false)
       }
       else
       toast.error("API Key Not Found")
+       
+      setPromptResponseLoading(false)
     }
   }
 
@@ -135,5 +135,3 @@ export default function Home() {
       </>
   )
 }
-
-//prompt:give teh react functional component to generate the UI of invoice  and use tailwindcss and also wrap teh JSX with Tailwind wrapper imported from "@onedoc/react-print"  and also make the necessary imports like react. DO NOT import anything else from onedoc/react-print. do not use any props give all teh data yourself in the component
