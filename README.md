@@ -6,6 +6,11 @@
 
 <p id="description">A full stack app where you can give prompt to AI to generate code, make suitable changes in it and then convert the final code to PDF which you can download.</p>
 <br/>
+<h2>😔Why the project is not deployed?</h2>
+The project uses <h3>vm2</h3> which cannot be compiled in NextJS and hence needs separate backend. Most of the backend deployment services have become paid , and I am
+pretty much broke to use them. Render does have a free tier but it takes a lot of time to wake up when its idle so pretty much you need to keep waiting for 3-4 min
+till it starts working whenever making a call.Hence the project could not be deployed <h3>YET</h3>
+<br/><br/>
 <h2>🎬 Video Demo</h2>
 https://res.cloudinary.com/dxprcmmcz/video/upload/v1711783275/2024-03-30_12-42-26_veszjg.mkv
 <br/><br/>
