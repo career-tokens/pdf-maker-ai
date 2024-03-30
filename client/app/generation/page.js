@@ -42,11 +42,6 @@ export default function Home() {
         setFinalCode(await Geminigeneration(prompt,finalCode, key));
         setPromptResponseLoading(false)
       }
-      else if (process.env.NEXT_PUBLIC_DEVELOPEMENT_MODE == true)
-      {
-        setFinalCode(await Geminigeneration(prompt,finalCode, process.env.NEXT_PUBLIC_API_KEY));
-        setPromptResponseLoading(false)
-      }
       else
       toast.error("API Key Not Found")
     }
@@ -120,7 +115,7 @@ export default function Home() {
           <Editor
             className="flex-1 w-full"
             defaultLanguage="javascript"
-              defaultValue={`${finalCode}`}
+              value={`${finalCode}`}
               onMount={handleMount}
               theme="vs-dark"
               />
